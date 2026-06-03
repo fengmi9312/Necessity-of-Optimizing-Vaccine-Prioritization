@@ -8,28 +8,28 @@ The code implements an age-structured non-Markovian SIRVP model, computes object
 
 ## Conceptual summary
 
-For a prevention objective \(q\), epidemiological necessity is defined as
+For a prevention objective $q$, epidemiological necessity is defined as
 
-\[
+$$
 N_q = \tilde{\chi}_q(\vartheta_q^{\max}) - \tilde{\chi}_q(\vartheta_q^{\mathrm{opt}}),
-\]
+$$
 
-where \(\vartheta_q^{\mathrm{opt}}\) is the feasible allocation that minimizes the final burden \(\tilde{\chi}_q\), and \(\vartheta_q^{\max}\) is the feasible allocation that maximizes the same burden under the same fixed vaccine supply. A large \(N_q\) indicates that allocation choices can substantially change epidemic outcomes. A small \(N_q\) indicates that many feasible allocations perform similarly, so the additional epidemiological gain from selecting the optimized allocation is limited.
+where $\vartheta_q^{\mathrm{opt}}$ is the feasible allocation that minimizes the final burden $\tilde{\chi}_q$, and $\vartheta_q^{\max}$ is the feasible allocation that maximizes the same burden under the same fixed vaccine supply. A large $N_q$ indicates that allocation choices can substantially change epidemic outcomes. A small $N_q$ indicates that many feasible allocations perform similarly, so the additional epidemiological gain from selecting the optimized allocation is limited.
 
 The main analyses consider two prevention objectives:
 
-- cumulative infections, denoted by \(q=c\);
-- deaths, denoted by \(q=d\), using age-specific infection fatality rates as objective weights.
+- cumulative infections, denoted by $q=c$;
+- deaths, denoted by $q=d$, using age-specific infection fatality rates as objective weights.
 
 The repository also evaluates cross-objective penalties,
 
-\[
+$$
 \Phi_x^{(y)} =
 \frac{\tilde{\chi}_x(\vartheta_y^{\mathrm{opt}}) - \tilde{\chi}_x(\vartheta_x^{\mathrm{opt}})}
 {\tilde{\chi}_x(0) - \tilde{\chi}_x(\vartheta_x^{\mathrm{opt}})}, \qquad x \neq y,
-\]
+$$
 
-which measure how much of the vaccination benefit for objective \(x\) is sacrificed when using the allocation optimized for objective \(y\). These penalties identify cross-objective trade-off intervals in which infection-minimizing and death-minimizing allocations have materially different epidemiological consequences.
+which measure how much of the vaccination benefit for objective $x$ is sacrificed when using the allocation optimized for objective $y$. These penalties identify cross-objective trade-off intervals in which infection-minimizing and death-minimizing allocations have materially different epidemiological consequences.
 
 ## Repository structure
 
