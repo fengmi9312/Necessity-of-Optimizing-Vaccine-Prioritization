@@ -1,0 +1,52 @@
+# environments
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Data files
+AnalysisData/
+AnalysisDataTmp/
+RefinementData/
+Figure/
+ExperimentalData/
+ExperimentalDataTmp/
+
+# data and outputs
+data/
+raw_data/
+processed_data/
+results/
+outputs/
+figures_tmp/
+logs/
+
+# large scientific files
+*.csv
+*.xlsx
+*.mat
+*.h5
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+
+# editor/system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# LaTeX temp
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg

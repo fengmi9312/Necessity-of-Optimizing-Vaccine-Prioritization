@@ -1,0 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Feb 28 01:39:04 2026
+
+@author: fengm
+"""
+
+
+
+
+from .figure_dependencies import prototype_necs_heatmap
+
+def draw(anal_data):
+    return prototype_necs_heatmap.draw(anal_data, 'necs_from_fatality', 'coef_beta_1', data_type = 'vac_rand_necs', corr_contour = False, target = 'd')
