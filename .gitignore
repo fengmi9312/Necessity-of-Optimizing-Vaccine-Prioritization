@@ -39,6 +39,7 @@ logs/
 *.ckpt
 
 # editor/system
+.codex/
 .vscode/
 .idea/
 .DS_Store
