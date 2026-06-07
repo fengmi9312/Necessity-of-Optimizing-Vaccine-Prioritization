@@ -14,6 +14,8 @@ RefinementData/
 Figure/
 ExperimentalData/
 ExperimentalDataTmp/
+Text/
+WorkProgress/
 
 # data and outputs
 data/
@@ -50,8 +52,8 @@ Thumbs.db
 *.bbl
 *.blg
 
-!AnalysisData/
-!AnalysisData/**
+#!AnalysisData/
+#!AnalysisData/**
 
 # Ignore oversized generated analysis file
-/AnalysisData/Data_fraction_from_time_with_example.xlsx
+#/AnalysisData/Data_fraction_from_time_with_example.xlsx

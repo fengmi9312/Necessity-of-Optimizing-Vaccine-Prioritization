@@ -38,7 +38,7 @@ anal_list = ['corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_conta
 
 anal_list = ['corr_from_r0_factor', 'necs_from_r0_factor', 'corr_line_from_r0', 'necs_line_from_r0', 'prdt_from_corr', 'bnf_from_example', 'corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_contact','necs_from_r0_factor_by_eta', 'corr_from_r0_factor_by_eta', 'necs_from_country', 'param_from_country', 'fitted_fraction_from_time']
 
-anal_data.update(analysis.get_anal_data(['corr_from_r0_factor', 'necs_from_r0_factor']))
+anal_data.update(analysis.get_anal_data(['necs_from_r0_factor']))
 # anal_data.update(analysis.get_anal_data(['alloc_from_age_with_example', 'fraction_from_time_with_example']))
 
 fig_dict = {'illustration': ['necs_illustration'],
@@ -103,8 +103,8 @@ fig_dict = {'necs_death': ['necs_death_delta', 'necs_death_gamma', 'corr_death_g
             'sm_res_country': ['necs_cinf', 'necs_death', 'pnlt', 'param', 'fitting']}
 
 seleted_key = 'necs_cinf'
-selected_fig_dict = {'sm_necs_other_cinf': ['necs_c_perct', 'corr_c_perct'],
-                     'sm_necs_other_death': ['necs_c_perct', 'corr_c_perct'],} #{seleted_key: fig_dict[seleted_key]}
+selected_fig_dict = {'sm_pop_necs': ['cinf_delay', 'death_delay', 'death_fatality'],
+                     'sm_necs_of_vac': ['cinf_delay_pop', 'death_delay_pop', 'death_fatality_pop'],} #{seleted_key: fig_dict[seleted_key]}
 save_fig = True
 import matplotlib.pyplot as plt
 importlib.reload(ff)

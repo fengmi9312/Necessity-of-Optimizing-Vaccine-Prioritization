@@ -58,17 +58,17 @@ def draw(anal_data, expr_name, expr_param, anal_name = 'necs_from_r0_factor', **
         else: title = f'Vaccination necessity\n'fr'for {target_name} ($\mathcal{{M}}^{{\mathrm{{max}}}}_{{\mathrm{{{target_sub}}}}}$)'
         zlabel = fr'$\mathcal{{M}}^{{\mathrm{{max}}}}_{{\mathrm{{{target_sub}}}}}$ (%)'
         cmap_color = 'Blues'
-    elif data_type == 'vac_rand_necs':
+    elif data_type == 'vac_pop_necs':
         res = (anal_data[anal_name][f'{sheet_name_preppend}_no_vac'] - anal_data[anal_name][f'{sheet_name_preppend}_rand']).T * 100
-        if target == 'c': title = f'Vaccination necessity for\n'fr'{target_name} ($\mathcal{{M}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$)'
-        else: title = f'Vaccination necessity\n'fr'for {target_name} ($\mathcal{{M}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$)'
-        zlabel = fr'$\mathcal{{M}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$ (%)'
+        if target == 'c': title = f'Vaccination necessity for\n'fr'{target_name} ($\mathcal{{M}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$)'
+        else: title = f'Vaccination necessity\n'fr'for {target_name} ($\mathcal{{M}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$)'
+        zlabel = fr'$\mathcal{{M}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$ (%)'
         cmap_color = 'Oranges'
-    elif data_type == 'rand_necs':
+    elif data_type == 'pop_necs':
         res = (anal_data[anal_name][f'{sheet_name_preppend}_rand'] - anal_data[anal_name][f'{sheet_name_preppend}_min']).T * 100
-        if target == 'c': title = f'Epidemiological necessity for\n'fr'{target_name} ($\mathcal{{N}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$)'
-        else: title = f'Epidemiological necessity\n'fr'for{target_name} ($\mathcal{{N}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$)'
-        zlabel = fr'$\mathcal{{N}}^{{\mathrm{{rand}}}}_{{\mathrm{{{target_sub}}}}}$ (%)'
+        if target == 'c': title = f'Epidemiological necessity for\n'fr'{target_name} ($\mathcal{{N}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$)'
+        else: title = f'Epidemiological necessity\n'fr'for{target_name} ($\mathcal{{N}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$)'
+        zlabel = fr'$\mathcal{{N}}^{{\mathrm{{pop}}}}_{{\mathrm{{{target_sub}}}}}$ (%)'
         cmap_color = 'Oranges'
     else:
         sheet_name = f'{sheet_name_preppend}_{data_type}'
