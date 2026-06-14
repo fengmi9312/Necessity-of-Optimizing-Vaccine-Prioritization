@@ -45,7 +45,7 @@ def draw(anal_data):
         ax.set_ylim(0, 25)
         ax.spines['left'].set_bounds(0, 25)
         ax.set_yticks(np.arange(0, 26, 5))
-        figure_setting.set_xylabel(ax, 'Age group', 'Fatality (%)', fontsize = label_fontsize, xlabel_coords = -0.3, ylabel_coords = -0.15)
+        figure_setting.set_xylabel(ax, 'Age group', 'IFR (%)', fontsize = label_fontsize, xlabel_coords = -0.3, ylabel_coords = -0.15)
         figure_setting.remove_spines(ax, ['top', 'right'])
         figure_setting.set_spine_linewidth(ax, spine_linewidth)
         figure_setting.set_tick_fontsize(ax, tick_fontsize)

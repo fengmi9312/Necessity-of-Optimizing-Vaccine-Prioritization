@@ -299,7 +299,7 @@ class sir_delta:
         for i in range(vac_dur):
             if i < vac_dur - 1: self.add_vaccination(vac_alloc / vac_dur)
             else: 
-                c_res = self.calc_vac_prdt(vac_alloc, mem = mem, init_c = init_c, ctol = ctol)
+                c_res = self.calc_vac_prdt(vac_alloc / vac_dur, mem = mem, init_c = init_c, ctol = ctol)
                 break
             for j in range(vac_gap):
                 self.spread_once()

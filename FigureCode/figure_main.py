@@ -38,7 +38,7 @@ anal_list = ['corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_conta
 
 anal_list = ['corr_from_r0_factor', 'necs_from_r0_factor', 'corr_line_from_r0', 'necs_line_from_r0', 'prdt_from_corr', 'bnf_from_example', 'corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_contact','necs_from_r0_factor_by_eta', 'corr_from_r0_factor_by_eta', 'necs_from_country', 'param_from_country', 'fitted_fraction_from_time']
 
-anal_data.update(analysis.get_anal_data(['necs_from_r0_factor']))
+anal_data.update(analysis.get_anal_data(['necs_from_r0_time_course']))
 # anal_data.update(analysis.get_anal_data(['alloc_from_age_with_example', 'fraction_from_time_with_example']))
 
 fig_dict = {'illustration': ['necs_illustration'],
@@ -105,7 +105,12 @@ fig_dict = {'necs_death': ['necs_death_delta', 'necs_death_gamma', 'corr_death_g
 seleted_key = 'necs_cinf'
 selected_fig_dict = {'sm_pop_necs': ['cinf_delay', 'death_delay', 'death_fatality'],
                      'sm_necs_of_vac': ['cinf_delay_pop', 'death_delay_pop', 'death_fatality_pop'],} #{seleted_key: fig_dict[seleted_key]}
-save_fig = True
+selected_fig_dict = {'sm_contacts_params': ['at', 'de', 'es', 'fr', 'ie', 'il', 'jp', 'kr', 'uk'],
+                     'sm_fatality_by_contact': ['fatality'],
+                     'sm_populations_params': ['at', 'de', 'es', 'fr', 'ie', 'il', 'jp', 'kr', 'uk'],
+                     'sm_us_params': ['contacts', 'fatality_by_gamma', 'populations']}
+selected_fig_dict = {'sm_necs_time_course': ['necs_cinf', 'necs_death']}
+save_fig = False
 import matplotlib.pyplot as plt
 importlib.reload(ff)
 for fig_name, sub_name_list in selected_fig_dict.items():
@@ -114,3 +119,7 @@ for fig_name, sub_name_list in selected_fig_dict.items():
         if save_fig:
             fig.savefig(os.path.join(code_root, 'Figure', fig_name, f'{sub_name}.pdf'), dpi=300)
             plt.close(fig)
+            
+            
+plt.figure()
+plt.plot(anal_data['necs_from_r0_time_course']['necs_from_time_course_(param)-us_c_dd_necs'].to_numpy()[:, 20])

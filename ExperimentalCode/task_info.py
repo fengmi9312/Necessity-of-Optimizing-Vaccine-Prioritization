@@ -21,6 +21,8 @@ info = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c_perc
         'necs_from_growth_gen': {'weibull_0': 9, 'weibull_1': 9, 'weibull_2': 9, 'gamma_0': 9, 'gamma_1': 9, 'gamma_2': 9, 'lognormal_0': 9, 'lognormal_1': 9, 'lognormal_2': 9},
         'necs_from_growth_s': {'weibull_0': 40, 'weibull_1': 40, 'weibull_2': 40, 'gamma_0': 40, 'gamma_1': 40, 'gamma_2': 40, 'lognormal_0': 40, 'lognormal_1': 40, 'lognormal_2': 40},
         'necs_from_country': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}, 
+        'necs_from_country_70': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}, 
+        'necs_from_country_35': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}, 
         'param_from_country': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}, 
         'necs_from_example': {'delay': 12},
         'acc_comp': {'var': 20, 'delay': 20, 'half_domain': 20},
@@ -29,7 +31,9 @@ info = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c_perc
         'direct_effects_from_param': {'delay': 1, 'vac_eff': 1, 'vac_avail': 1, 'c_perct': 1, 'coef_alpha_0': 1, 'coef_alpha_1': 1, 'coef_beta_0': 1, 'coef_beta_1': 1},
         'direct_effects_line_from_param': {'delay_8': 1, 'delay_10': 1, 'delay_13': 1, 'delay_26': 1, 'coef_beta_1_0': 1, 'coef_beta_1_13': 1, 'coef_beta_1_26': 1, 'coef_beta_1_39': 1},
         'direct_effects_from_contact': {'0': 1, '1': 1, '2': 1, '3': 1, '4': 1, '5': 1, '6': 1, '7': 1, '8': 1, '9': 1, '10': 1, '11': 1, '12': 1, '13': 1}, 
-        'group_effect': {'delay': 1}, 'necs_from_time_course': {'param': 40}}       
+        'group_effect': {'delay': 1}, 
+        'necs_from_time_course': {'param': 1600}, 'necs_from_time_coursex': {'param': 1600},
+        'direct_effects_from_time_course': {'param': 40}}       
 
 def check_info(func_name, task_param):
     if func_name not in info:

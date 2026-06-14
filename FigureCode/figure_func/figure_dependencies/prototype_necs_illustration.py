@@ -20,7 +20,7 @@ def draw(anal_data, necs_type = 'high', **kwargs):
     ####################################################
     scale_prop = 8
     # grid_attrs = [[{'pos': (0, 0), 'size': (36, 30)}, {'pos': (46, 0), 'size': (36, 30)}, {'pos': (90, 0), 'size': (16, 12)}, {'pos': (90, 18), 'size': (16, 12)}, ]]
-    grid_attrs = [[{'pos': (0, 0), 'size': (45, 30)}], [{'pos': (0, 40), 'size': (18, 9)}, {'pos': (27, 40), 'size': (18, 9)}]] # , {'pos': (0, 36), 'size': (16, 12)}, {'pos': (20, 36), 'size': (16, 12)}, 
+    grid_attrs = [[{'pos': (0, 0), 'size': (45, 40)}], [{'pos': (0, 50), 'size': (18, 9)}, {'pos': (27, 50), 'size': (18, 9)}]] # , {'pos': (0, 36), 'size': (16, 12)}, {'pos': (20, 36), 'size': (16, 12)}, 
     if necs_type == 'high': margin_attr = {'top': 3, 'bottom': 8, 'left': 8, 'right': 3}
     elif necs_type == 'low': margin_attr = {'top': 3, 'bottom': 8, 'left': 8, 'right': 3}
     else: pass
@@ -85,7 +85,7 @@ def draw(anal_data, necs_type = 'high', **kwargs):
         data_tmp = anal_data['fraction_from_time_with_example'][f'{delay_idx}_{r0_idx}_{sttg}_dd']
         handles.append(ax.plot(data_tmp['time_line'][:time_len], data_tmp[f'curve_{target}'][:time_len], color = colors[sttg], linestyle = linestyles[sttg], label = labels[sttg], linewidth = 1.5)[0])
     
-    figure_setting.set_xylabel(ax, 'Time (d)', 'Cumulative infections (%)', fontsize = label_fontsize, xlabel_coords = -0.11, ylabel_coords = -0.11)
+    figure_setting.set_xylabel(ax, 'Time (d)', 'Cumulative infections (%)', fontsize = label_fontsize, xlabel_coords = -0.1, ylabel_coords = -0.1)
     figure_setting.remove_spines(ax, ['top', 'right'])
     figure_setting.set_spine_linewidth(ax, spine_linewidth)
     figure_setting.set_tick_fontsize(ax, tick_fontsize)
@@ -120,14 +120,14 @@ def draw(anal_data, necs_type = 'high', **kwargs):
         ax_inset = axes[1][i]
         ax_inset.bar(np.arange(16), anal_data['alloc_from_age_with_example']['alloc'][f"{delay_idx}_{r0_idx}_{sttg}_{target}"] * 100, 
                 color = ['#2b69b7', '#d43732'][i], width = 0.7, edgecolor='black', linewidth = 0.5)
-        figure_setting.set_xylabel(ax_inset, 'Age group', 'Allocation (%)', fontsize = label_fontsize * 0.75, xlabel_coords = -0.5, ylabel_coords = -0.11)
+        figure_setting.set_xylabel(ax_inset, 'Age group', 'Allocation (%)', fontsize = label_fontsize * 0.75, xlabel_coords = -0.45, ylabel_coords = -0.12)
         figure_setting.set_spine_linewidth(ax_inset, spine_linewidth * 0.5)
         figure_setting.set_tick_fontsize(ax_inset, tick_fontsize * 0.65)
         ax_inset.tick_params(axis='x', rotation = 90, labelsize = label_fontsize * 0.4)
         ax_inset.set_xlim(-1, 16)
         ax_inset.spines['bottom'].set_bounds(0, 15)
-        ax_inset.set_xticks(np.arange(16), age_groups, rotation = 90, fontsize = 5)
-        ax_inset.set_yticks(np.arange(0, 9, 4), np.arange(0, 9, 4), fontsize = 5)
+        ax_inset.set_xticks(np.arange(16), age_groups, rotation = 90, fontsize = 6)
+        ax_inset.set_yticks(np.arange(0, 9, 4), np.arange(0, 9, 4), fontsize = 6)
         ax_inset.set_ylim(0, 8)
         ax_inset.tick_params(axis='x', which='major', pad=1)
         ax_inset.text(0.02, 0.99, f'{sttg_names[i]} allocation', fontsize = 7, ha = 'left', va = 'top', transform=ax_inset.transAxes, color = ['#2b69b7', '#d43732'][i])

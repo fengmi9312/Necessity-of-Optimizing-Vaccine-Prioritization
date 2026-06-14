@@ -20,7 +20,7 @@ def draw(anal_data, **kwargs):
     ####################################################
     scale_prop = 10
     grid_attrs = [[{'pos': (0, 0), 'size': (45, 45)}]]
-    margin_attr = {'top': 2, 'bottom': 5, 'left': 2, 'right': 2}
+    margin_attr = {'top': 2, 'bottom': 2, 'left': 2, 'right': 2}
     fig, axes = figure_setting.generate_grid(grid_attrs, margin_attr, scale_prop)
     ######################################################
     ####################################################
@@ -38,7 +38,7 @@ def draw(anal_data, **kwargs):
             if col_type == 'flag':
                 res[col_names[col_type]].append(os.path.join(code_root, 'Dependencies', 'CountryFlags', f'{country}.png'))
             else:
-                data_tmp = anal_data['param_from_country'][col_type][country]
+                data_tmp = anal_data['necs_from_country'][col_type][country]
                 res[col_names[col_type]].append(f"{np.round(np.mean(data_tmp), round_num[col_type])} ({np.round(np.percentile(data_tmp, 2.5), round_num[col_type])} – {np.round(np.percentile(data_tmp, 97.5), round_num[col_type])})")
     df = pd.DataFrame(res, index = countries)
     df = df.rename_axis('Country')

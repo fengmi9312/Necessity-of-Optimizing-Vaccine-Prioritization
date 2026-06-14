@@ -76,16 +76,16 @@ def draw(anal_data, expr_name, expr_param, anal_name = 'necs_from_r0_factor', **
     plt.sca(ax)
     overlap = 0.75
     deep_colors = sns.color_palette('deep')
-    edge_width = 0.75
+    edge_width = 1
     for idx in range(40):
         y = zc[idx]
-        ax.fill_between(x, y + idx * overlap, np.ones(len(x)) * (idx * overlap), zorder = 40 - idx + 1, color = deep_colors[2], alpha = 0.75, linewidth = 0, label = r'$\Phi_{\mathrm{c}}^{(\mathrm{d})}$' if idx == 0 else None)
-        plt.plot(x, y + idx * overlap, color = 'white', zorder = 40 - idx + 1, linewidth = edge_width)
-        plt.plot(x, np.ones(40) * (idx * overlap), color = deep_colors[3], zorder = 40 - idx + 1, linewidth = edge_width)
+        ax.fill_between(x, y + idx * overlap, np.ones(len(x)) * (idx * overlap), zorder = 40 - idx + 1, color = deep_colors[2], alpha = 0.65, linewidth = 0, label = r'$\Phi_{\mathrm{c}}^{(\mathrm{d})}$' if idx == 0 else None)
+        plt.plot(x, y + idx * overlap, color = deep_colors[2], zorder = 40 - idx + 1, linewidth = edge_width)
+        plt.plot(x, np.ones(40) * (idx * overlap), color = 'tab:gray', zorder = 40 - idx + 1, linewidth = edge_width)
         y = zd[idx]
-        ax.fill_between(x, y + idx * overlap, np.ones(len(x)) * (idx * overlap), zorder = 40 - idx + 1, color = deep_colors[1], alpha = 0.75, linewidth = 0, label = r'$\Phi_{\mathrm{d}}^{(\mathrm{c})}$' if idx==0 else None)
-        plt.plot(x, y + idx * overlap, color = 'white', zorder = 40 - idx + 1, linewidth = edge_width)
-        plt.plot(x, np.ones(40) * (idx * overlap), color = deep_colors[0], zorder = 40 - idx + 1, linewidth = edge_width)
+        ax.fill_between(x, y + idx * overlap, np.ones(len(x)) * (idx * overlap), zorder = 40 - idx + 1, color = deep_colors[1], alpha = 0.65, linewidth = 0, label = r'$\Phi_{\mathrm{d}}^{(\mathrm{c})}$' if idx==0 else None)
+        plt.plot(x, y + idx * overlap, color = deep_colors[1], zorder = 40 - idx + 1, linewidth = edge_width)
+        plt.plot(x, np.ones(40) * (idx * overlap), color = 'tab:gray', zorder = 40 - idx + 1, linewidth = edge_width)
         
         if expr_param == 'delay': ax.text(0.9, idx * overlap, f'$\\delta = {idx / 2}$', fontsize = 7, color = 'black', horizontalalignment='right', verticalalignment='bottom', transform= ax.transData)
         else: ax.text(0.9, idx * overlap, f'$\\gamma = {idx} / 39$' if expr_name == 'necs_from_fatality' else f'$\\gamma^* = {idx} / 39$', fontsize = 7, color = 'black', horizontalalignment='right', verticalalignment='bottom', transform= ax.transData)

@@ -39,7 +39,7 @@ def draw(anal_data):
     ax.set_ylim(0, 10)
     ax.spines['left'].set_bounds(0, 10)
     ax.set_yticks(np.arange(0, 11, 5))
-    figure_setting.set_xylabel(ax, 'Age group', 'Population fraction (%)', fontsize = label_fontsize, xlabel_coords = -0.25, ylabel_coords = -0.12)
+    figure_setting.set_xylabel(ax, 'Age group', 'Population share (%)', fontsize = label_fontsize, xlabel_coords = -0.25, ylabel_coords = -0.12)
     figure_setting.remove_spines(ax, ['top', 'right'])
     figure_setting.set_spine_linewidth(ax, spine_linewidth)
     figure_setting.set_tick_fontsize(ax, tick_fontsize)

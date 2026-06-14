@@ -99,7 +99,7 @@ def draw(anal_data, expr_name, expr_param, anal_name = 'necs_from_r0_factor', **
         ax.clabel(plt.contour(X, Y, corr_z, levels=[0], colors='k', linestyles = 'solid', linewidths = 1), fontsize = 10, fmt = lambda x: rf'$\xi = {0 if x == 0 else np.round(x, 1)}$')
     
     
-    param_list = {'delay': np.arange(40) / 2, 'vac_eff': np.linspace(0.22, 1, 40), 'vac_avail': np.linspace(0.12, 0.9, 40), 'c_perct': np.arange(215, 801, 15) / 10, 'vac_dur': np.arange(1, 41)}
+    param_list = {'delay': np.arange(40) / 2, 'vac_eff': np.linspace(0.22, 1, 40), 'vac_avail': np.linspace(0.12, 0.9, 40), 'c_perct': np.arange(215, 801, 15) / 10, 'vac_dur': np.arange(1, 41), 'time_course': np.arange(2, 42)}
     if expr_name == 'necs_from_fatality':
         y_label = r'$\gamma$' 
         ax.set_yticks(np.arange(40)[0::13], ['0', r'$1/3$', r'$2/3$', '1'])
@@ -112,6 +112,9 @@ def draw(anal_data, expr_name, expr_param, anal_name = 'necs_from_r0_factor', **
     elif expr_name in ['necs_from_param', 'necs_from_param_by_eta']: 
         y_label = {'delay': r'$\delta$ (days)', 'vac_eff': r'$\eta$', 'vac_avail': r'$\rho$', 'c_perct': r'$\mathcal{P}_{\mathrm{vac}}$ (%)', 'vac_dur': r'$\mathcal{D}_{\mathrm{roll}}$'}[expr_param]
         ax.set_yticks(np.arange(40)[0::13], param_list[expr_param][0::13])
+    elif expr_name == 'necs_from_time_course':
+        y_label = r'$\mathcal{D}_{\mathrm{roll}}$'
+        ax.set_yticks(np.arange(40)[0::13], param_list['time_course'][0::13])
     else: pass
     plt.title(title, fontsize = 15, pad=8,linespacing=1.15)
     figure_setting.set_xylabel(ax, r'$R_0$', y_label, fontsize = label_fontsize, xlabel_coords = -0.09, ylabel_coords = -0.12)

@@ -43,6 +43,6 @@ def draw(anal_data):
     figure_setting.set_xylabel(ax, 'Age group', 'Age group', fontsize = label_fontsize, xlabel_coords = -0.2, ylabel_coords = -0.2)
     plt.title(country, fontsize = 15)
     cbar = fig.colorbar(im, cax=axes[1][0])
-    cbar.set_label('Contact Level', fontsize = 10)
+    cbar.set_label('Contact intensity', fontsize = 10)
     
     return fig, axes
