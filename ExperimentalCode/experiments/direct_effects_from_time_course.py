@@ -116,7 +116,7 @@ def execute(expr_param, file_idx):
         res[sheet_name_3][str(param_idx)] = prdt
         
         
-        calc_params['delay'] = int((vac_dur - 1) * vac_gap * 3 / 4)
+        calc_params['delay'] = int(700 * time_scale)
         simu_once = sir_delta(**calc_params)
         if simu_once.getc_c_tot() < c_perct * (steady_c - init_c) + init_c:
             while True:
@@ -125,7 +125,7 @@ def execute(expr_param, file_idx):
             
         
         alloc_coefx = simu_once._sir_delta__get_eff() * simu_once._sir_delta__eta
-        sheet_namex_0 = f'x_{basic_params.country_abbr[country]}_{r0_idx}'
+        sheet_namex_0 = f'fixd_{basic_params.country_abbr[country]}_{r0_idx}'
         if param_idx == 0: 
             res[sheet_namex_0] = {}
         res[sheet_namex_0][str(param_idx)] = alloc_coefx

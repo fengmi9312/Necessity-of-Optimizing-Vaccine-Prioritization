@@ -20,13 +20,14 @@ def draw(anal_data, **kwargs):
     ####################################################
     scale_prop = 9
     grid_attrs = [[{'pos': (0, 0), 'size': (90, 27)}]]
-    margin_attr = {'top': 2, 'bottom': 5, 'left': 5, 'right': 2}
+    margin_attr = {'top': 5, 'bottom': 5, 'left': 5, 'right': 2}
     fig, axes = figure_setting.generate_grid(grid_attrs, margin_attr, scale_prop)
     ######################################################
     label_fontsize = 9
     tick_fontsize = 7
     ####################################################
     ax = axes[0][0]
+    ax.set_title('Country-specific cross-objective penalties', fontsize=11, fontweight='bold', pad=6)
     countries = ['Ireland', 'Japan', 'United Kingdom', 'France', 'Germany', 'United States', 'Spain', 'Austria', 'Israel', 'South Korea']
     def prepare_data(data_dict):
         mean_res = {country: np.mean(data_dict['necs_from_country'][f"c_{acc_type}{'_dur' if dur else ''}"][f'{country}_none_necs']) for country in countries}

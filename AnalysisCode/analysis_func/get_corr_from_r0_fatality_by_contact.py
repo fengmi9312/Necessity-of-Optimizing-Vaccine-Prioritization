@@ -66,7 +66,7 @@ def analyze(expr_data):
                 anal_data[sheet_name]['optimal_dir'].append(anal_func.cosine_similarity(alloc_optimal * calc_params['populations'], direct_effects_coef * coef_target[target]))
                 anal_data[sheet_name]['worst_ind'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], contact_arr * calc_params['populations']))
                 anal_data[sheet_name]['worst_dir'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], direct_effects_coef * coef_target[target]))
-                if target == 'w': anal_data[sheet_name_x]['alloc_corr'].append(anal_func.cosine_similarity(alloc_data[f'min_x_dd_{{{expr_param}_{basic_params.country_abbr[country]}_{param_idx}}}'].to_numpy() * calc_params['populations'], alloc_data[f'min_x_{append_name}'].to_numpy() * calc_params['populations']))
+                if target == 'w': anal_data[sheet_name_x]['alloc_corr'].append(pearsonr(alloc_data[f'min_x_dd_{{{expr_param}_{basic_params.country_abbr[country]}_{param_idx}}}'].to_numpy() * calc_params['populations'], alloc_data[f'min_x_{append_name}'].to_numpy() * calc_params['populations'])[0])
     return anal_data
 
 

@@ -12,9 +12,15 @@ import itertools
 from .analysis_dependencies import anal_func
 from copy import deepcopy
 from scipy.stats import pearsonr
+from itertools import combinations
 
 
 def analyze(expr_data):  
+    coef_pos_list = []
+    for r in range(1, 4):
+        for combo in combinations([0, 1, 2, 3], r):
+            coef_pos_list.append(list(combo))
+     
     targets = ['c', 'd']
     countries = ['United States']
     anal_data = {}
@@ -47,7 +53,13 @@ def analyze(expr_data):
                 coef_target = {'c': calc_params['populations'], 'd': calc_params['populations'] * ifrs}
                 alloc_data = expr_data[task_name][file_idx]['alloc']
                 alloc_optimal, alloc_worst = alloc_data[f'min_{target}_{append_name}'].to_numpy(), alloc_data[f'max_{target}_{append_name}'].to_numpy()
-                contact_arr = calc_params['contacts'].sum(axis = 1)
+                if expr_name == 'necs_from_contact':
+                    contacts_total = np.array([rgd.data_of_countries[country]['contacts'][region] for region in ['home', 'school', 'work', 'other_locations']])
+                    param_val = param_idx / 40
+                    contacts_total[coef_pos_list[int(expr_param)]] *= param_val
+                    contact_mat = contacts_total.sum(axis = 0)
+                    contact_arr = contact_mat.sum(axis = 1)
+                else: contact_arr = calc_params['contacts'].sum(axis = 1)
                 direct_effects_coef = expr_data[direct_effects_task_name][0][f'{basic_params.country_abbr[country]}_{file_idx}'][str(param_idx)]
                 
                 

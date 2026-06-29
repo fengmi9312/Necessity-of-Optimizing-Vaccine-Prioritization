@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Country death necessity against demographic fatality risk.
+Country-specific necessity for minimizing deaths against demographic fatality risk.
 """
 
 import numpy as np
@@ -53,7 +53,7 @@ def draw(anal_data, **kwargs):
         ifr_mean.append(country_data[country]['populations'] @ country_data[country]['ifrs'] * 100)
 
         necs_key = f'{country}_none_necs'
-        necs_stats = _mean_ci(anal_data['necs_from_country'][sheet_name][necs_key] * 100)
+        necs_stats = _mean_ci(anal_data['necs_from_country_70'][sheet_name][necs_key] * 100)
         necs_mean.append(necs_stats[0])
         necs_lower.append(necs_stats[1])
         necs_upper.append(necs_stats[2])
@@ -108,12 +108,12 @@ def draw(anal_data, **kwargs):
     #         transform=ax.transAxes, fontsize=7, color='0.25', ha='left')
 
     ax.set_xlim(1.7, 5.35)
-    ax.set_ylim(0, 1.05)
-    ax.set_yticks(np.arange(0, 1.01, 0.2))
+    ax.set_ylim(0, 1.45)
+    ax.set_yticks(np.arange(0, 1.41, 0.2))
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific death necessity\n''across population-weighted IFR',
+    ax.set_title('Country-specific necessity for minimizing deaths\n''across population-weighted overall IFR',
                  fontsize=12, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,

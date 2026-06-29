@@ -87,20 +87,26 @@ def draw(anal_data, expr_name, expr_param, anal_name = 'necs_from_r0_factor', **
         plt.plot(x, y + idx * overlap, color = deep_colors[1], zorder = 40 - idx + 1, linewidth = edge_width)
         plt.plot(x, np.ones(40) * (idx * overlap), color = 'tab:gray', zorder = 40 - idx + 1, linewidth = edge_width)
         
-        if expr_param == 'delay': ax.text(0.9, idx * overlap, f'$\\delta = {idx / 2}$', fontsize = 7, color = 'black', horizontalalignment='right', verticalalignment='bottom', transform= ax.transData)
-        else: ax.text(0.9, idx * overlap, f'$\\gamma = {idx} / 39$' if expr_name == 'necs_from_fatality' else f'$\\gamma^* = {idx} / 39$', fontsize = 7, color = 'black', horizontalalignment='right', verticalalignment='bottom', transform= ax.transData)
+        if expr_param == 'delay':
+            param_text = f'$\\delta = {idx / 2}$'
+        elif expr_name in ['necs_from_time_course', 'necs_from_time_course_fixd']:
+            param_text = f'$\\mathcal{{D}}_{{\\mathrm{{roll}}}} = {idx + 2}$'
+        else:
+            param_text = f'$\\gamma = {idx} / 39$'
+        ax.text(0.9, idx * overlap, param_text, fontsize = 7, color = 'black', horizontalalignment='right', verticalalignment='bottom', transform= ax.transData)
     
-    if anal_name not in ['necs_from_r0_factor_by_eta', 'necs_from_r0_fatality_by_contact']:
-        z = []
-        for param_idx in range(40):
-            sheet_name = f'{task_name}_{param_idx}_{basic_params.country_abbr[country]}'
-            z.append(anal_data['corr_from_r0_factor'][sheet_name]['alloc_corr'])
-        X, Y = np.meshgrid(x, np.arange(40) * overlap)
-        plt.contour(X, Y, z, levels=[0], colors='tab:gray', linestyles = '--', linewidths = 1.5, zorder = 100)
-        contour_proxy = mlines.Line2D([], [],color='tab:gray',linestyle='--',linewidth=1.5,label=r'$\theta = 0$')
-        handles, labels = ax.get_legend_handles_labels()
-        handles.append(contour_proxy)
-        labels.append(r'$\theta = 0$')
+    z = []
+    corr_anal_name = f"corr_{anal_name.partition('_')[2]}"
+    for param_idx in range(40):
+        sheet_name = f'{task_name}_{param_idx}_{basic_params.country_abbr[country]}'
+        z.append(anal_data[corr_anal_name][sheet_name]['alloc_corr'])
+    X, Y = np.meshgrid(x, np.arange(40) * overlap)
+    
+    plt.contour(X, Y, z, levels=[0], colors='tab:gray', linestyles = '--', linewidths = 1.5, zorder = 100)
+    contour_proxy = mlines.Line2D([], [],color='tab:gray',linestyle='--',linewidth=1.5,label=r'$\theta = 0$')
+    handles, labels = ax.get_legend_handles_labels()
+    handles.append(contour_proxy)
+    labels.append(r'$\theta = 0$')
     plt.xscale('log')   
     ax.spines['left'].set_visible(False)
     ax.spines['right'].set_visible(False)

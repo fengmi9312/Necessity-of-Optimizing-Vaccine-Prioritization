@@ -12,17 +12,17 @@ import numpy as np
 import itertools
 from .analysis_dependencies import anal_func
 from copy import deepcopy
+from scipy.stats import pearsonr
 
 
 def analyze(expr_data):
     targets = ['c', 'd']
     countries = ['United States']
     anal_data = {}
-    task_names = ['necs_from_time_course_(param)']
+    task_names = ['necs_from_time_course_(param)', 'necs_from_time_course_fixd_(param)']
     r0_amount = 40
     param_amount = 40
     vac_dur_offset = 2
-    direct_effects_param_idx = '14'
 
     for country in countries:
         calc_params = deepcopy(basic_params.calc_params)
@@ -31,7 +31,7 @@ def analyze(expr_data):
 
         for task_name, param_idx, target in itertools.product(task_names, range(param_amount), targets):
             expr_name, expr_param = anal_func.get_expr_info(task_name)
-            direct_effects_task_name = 'direct_effects_from_param_(delay)'
+            direct_effects_task_name = 'direct_effects_from_time_course_(param)'
             vac_dur = param_idx + vac_dur_offset
             append_name = f'dd_{{{expr_param}_{basic_params.country_abbr[country]}_{vac_dur}}}'
             sheet_name = f'{task_name}_{target}_{param_idx}_{basic_params.country_abbr[country]}'
@@ -50,7 +50,10 @@ def analyze(expr_data):
                 alloc_optimal = alloc_data[f'min_{target}_{append_name}'].to_numpy()
                 alloc_worst = alloc_data[f'max_{target}_{append_name}'].to_numpy()
                 contact_arr = calc_params['contacts'].sum(axis=1)
-                direct_effects_coef = expr_data[direct_effects_task_name][0][f'{basic_params.country_abbr[country]}_{r0_idx}'][direct_effects_param_idx]
+                if task_name == 'necs_from_time_course_(param)':
+                    direct_effects_coef = expr_data[direct_effects_task_name][r0_idx][f'{basic_params.country_abbr[country]}_{r0_idx}'][str(param_idx)]
+                else:
+                    direct_effects_coef = expr_data[direct_effects_task_name][r0_idx][f'fixd_{basic_params.country_abbr[country]}_{r0_idx}'][str(param_idx)]
 
                 anal_data[sheet_name]['effect_corrx'].append(anal_func.cosine_similarity(direct_effects_coef * coef_target[target], calc_params['populations'] * contact_arr))
                 anal_data[sheet_name]['optimal_indx'].append(anal_func.cosine_similarity(alloc_optimal * calc_params['populations'], contact_arr * calc_params['populations']))
@@ -58,7 +61,7 @@ def analyze(expr_data):
                 anal_data[sheet_name]['worst_indx'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], contact_arr * calc_params['populations']))
                 anal_data[sheet_name]['worst_dirx'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], direct_effects_coef * coef_target[target]))
 
-                s_vol = expr_data[direct_effects_task_name][0][f's_{basic_params.country_abbr[country]}_{r0_idx}'][direct_effects_param_idx].to_numpy() * calc_params['populations']
+                s_vol = expr_data[direct_effects_task_name][r0_idx][f's_{basic_params.country_abbr[country]}_{r0_idx}'][str(param_idx)].to_numpy() * calc_params['populations']
                 contact_eff = anal_func.calc_eff(vac_avail, s_vol, np.argsort(-contact_arr)) / calc_params['populations']
                 direct_effects_eff = anal_func.calc_eff(vac_avail, s_vol, np.argsort(-direct_effects_coef)) / calc_params['populations']
 
@@ -70,5 +73,5 @@ def analyze(expr_data):
 
                 anal_data[sheet_name]['min_max_corr'].append(anal_func.cosine_similarity(alloc_optimal * calc_params['populations'], alloc_worst * calc_params['populations']))
                 if target == 'c':
-                    anal_data[sheet_name_x]['alloc_corr'].append(anal_func.cosine_similarity(alloc_data[f'min_c_{append_name}'].to_numpy() * calc_params['populations'], alloc_data[f'min_d_{append_name}'].to_numpy() * calc_params['populations']))
+                    anal_data[sheet_name_x]['alloc_corr'].append(pearsonr(alloc_data[f'min_c_{append_name}'].to_numpy() * calc_params['populations'], alloc_data[f'min_d_{append_name}'].to_numpy() * calc_params['populations'])[0])
     return anal_data

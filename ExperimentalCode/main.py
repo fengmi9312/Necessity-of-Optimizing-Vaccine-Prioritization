@@ -11,9 +11,9 @@ import sys
 
 if __name__ == "__main__":
     if sys.platform.startswith('win'):
-        task_idx = 4xxxxx
-        task_amount = 5xxxxx
-        expr_name, task_param = 'direct_effects_from_time_course', 'param'
+        task_idx = 4xx
+        task_amount = 5
+        expr_name, task_param = 'direct_effects_from_time_course_with_vac_avail', 'param'
     elif  sys.platform.startswith('linux'):
         if len(sys.argv) != 5:
             sys.exit(1)

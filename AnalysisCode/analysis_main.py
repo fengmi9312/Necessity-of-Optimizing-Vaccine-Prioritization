@@ -44,7 +44,7 @@ task_dict = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c
 task_dict = {'necs_from_country_35': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40},
              'necs_from_country_70': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}}
 task_dict.update({'direct_effects_from_param': {'delay': 1, 'vac_eff': 1, 'vac_avail': 1, 'c_perct': 1, 'coef_alpha_0': 1, 'coef_alpha_1': 1, 'coef_beta_0': 1, 'coef_beta_1': 1}})
-
+xxx
 
 
 task_dict = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c_perct': 40, 'vac_dur': 40},
@@ -68,7 +68,25 @@ task_dict = {'direct_effects_from_param': {'delay': 1, 'vac_eff': 1, 'vac_avail'
              'necs_from_param': {'delay': 40, 'c_perct': 40, 'vac_avail': 40, 'vac_eff': 40, 'vac_dur': 40}, 
              'necs_from_fatality': {'coef_alpha_0': 40, 'coef_alpha_1': 40, 'coef_beta_0': 40, 'coef_beta_1': 40}, 'necs_from_contact': {'1': 40, '2': 40, '13': 40}}
 # task_dict = {'necs_from_example': {'delay': 6}, 'param_from_country': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40}, }
-task_dict = {'necs_from_time_course': {'param': 1600}}
+task_dict = {'direct_effects_from_time_course': {'param': 40}, 'necs_from_time_course_fixd': {'param': 1600}, 'necs_from_time_course': {'param': 1600}, 
+             'direct_effects_from_param': {'delay': 1, 'vac_eff': 1, 'vac_avail': 1, 'c_perct': 1, 'coef_alpha_0': 1, 'coef_alpha_1': 1, 'coef_beta_0': 1, 'coef_beta_1': 1},
+             'necs_from_param_by_eta':{'delay': 40}, 'necs_from_fatality_by_contact': {'coef_beta_1': 40}}
+
+
+task_dict = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c_perct': 40, 'vac_dur': 40},
+             'necs_from_fatality': {'coef_alpha_0': 40, 'coef_alpha_1': 40, 'coef_beta_0': 40, 'coef_beta_1': 40},
+             'necs_from_contact': {'1': 40, '2': 40, '13': 40},
+             'direct_effects_from_param': {'delay': 1, 'vac_eff': 1, 'vac_avail': 1, 'c_perct': 1, 'coef_alpha_0': 1, 'coef_alpha_1': 1, 'coef_beta_0': 1, 'coef_beta_1': 1},
+             'direct_effects_from_contact': {'1': 1, '2': 1, '3': 1, '13': 1},}
+
+task_dict = {'direct_effects_from_time_course': {'param': 40}, 'necs_from_time_course': {'param': 1600},
+             'necs_from_time_course_fixd': {'param': 1600},
+             'direct_effects_from_populations': {'param': 40}, 'necs_from_populations': {'param': 1600},
+             'necs_from_country': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40},
+             'necs_from_country_35': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40},
+             'necs_from_country_70': {'United States': 40, 'United Kingdom': 40, 'France': 40, 'Germany': 40, 'Spain': 40, 'Japan': 40, 'Israel': 40, 'Austria': 40, 'Ireland': 40, 'South Korea': 40},}
+
+task_dict = {'direct_effects_from_time_course_with_vac_avail': {'param': 40}, 'necs_from_time_course_fixd_with_vac_avail': {'param': 1600}}
 for task_key, task_item in task_dict.items():
     expr_data.update(load_experimental_data.load_certain_edata({task_key: task_item}))
 
@@ -77,7 +95,9 @@ anal_list = ['alloc_from_age_with_example', 'alloc_from_r0_factor', 'bnf_from_ex
              'corr_line_from_r0', 'dist_diff_from_r0', 'fitted_fraction_from_time', 'fraction_from_time_with_example', 
              'necs_from_country', 'necs_from_growth', 'necs_from_growth_s', 'necs_from_r0_factor', 'necs_line_from_r0', 'param_from_country', 'prdt_from_corr', 'prdt_from_xycoef']
 
-anal_list = ['necs_from_r0_time_course']
+anal_list = ['necs_from_r0_populations', 'corr_from_r0_populations', 'necs_from_country', 'necs_from_country_35', 'necs_from_country_70', 
+             'necs_from_r0_time_course', 'corr_from_r0_time_course']
+anal_list = ['necs_from_r0_time_course_with_vac_avail', 'corr_from_r0_time_course_with_vac_avail']
 for anal_name in anal_list:
     anal_data.update({anal_name: getattr(af, f'get_{anal_name}').analyze(expr_data)})
 

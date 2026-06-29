@@ -20,7 +20,7 @@ def analyze(expr_data):
     countries = ['United States']
     acc_types = ['dd']
 
-    task_names = ['necs_from_time_course_(param)']
+    task_names = ['necs_from_time_course_(param)', 'necs_from_time_course_fixd_(param)']
     anal_data = {}
     r0_amount = 40
     param_amount = 40

@@ -36,7 +36,7 @@ def _mean_ci(values):
 def draw(anal_data, **kwargs):
     acc_type = kwargs.pop('acc_type', 'dd')
     dur = kwargs.pop('dur', False)
-    param_idx = kwargs.pop('param_idx', 14)
+    param_idx = kwargs.pop('param_idx', 28)
     country_for_theory = kwargs.pop('country', 'United States')
 
     scale_prop = 10
@@ -55,13 +55,13 @@ def draw(anal_data, **kwargs):
     pnlt_mean, pnlt_lower, pnlt_upper = [], [], []
     sheet_name = f"c_{acc_type}{'_dur' if dur else ''}"
     for country in COUNTRIES:
-        r0_stats = _mean_ci(anal_data['necs_from_country_70']['r0'][country])
+        r0_stats = _mean_ci(anal_data['necs_from_country_140']['r0'][country])
         r0_mean.append(r0_stats[0])
         r0_lower.append(r0_stats[1])
         r0_upper.append(r0_stats[2])
 
         pnlt_stats = _mean_ci(
-            anal_data['necs_from_country_70'][sheet_name][f'{country}_none_pnlt'] * 100
+            anal_data['necs_from_country_140'][sheet_name][f'{country}_none_pnlt'] * 100
         )
         pnlt_mean.append(pnlt_stats[0])
         pnlt_lower.append(pnlt_stats[1])
@@ -109,7 +109,6 @@ def draw(anal_data, **kwargs):
         elinewidth=0.6,
         capsize=1.6,
         capthick=0.6,
-        alpha=0.55,
         zorder=1.5,
     )
 
@@ -143,15 +142,15 @@ def draw(anal_data, **kwargs):
 
     ax.set_xscale('log')
     ax.set_xlim(1.35, 4.2)
-    ax.set_ylim(0, 85)
-    ax.set_yticks(np.arange(0, 81, 20))
+    ax.set_ylim(0, 75)
+    ax.set_yticks(np.arange(0, 71, 10))
     ax.xaxis.set_major_locator(LogLocator(base=10, subs=(2, 3, 4)))
     ax.xaxis.set_major_formatter(FuncFormatter(_format_log_tick))
     ax.xaxis.set_minor_formatter(NullFormatter())
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific cumulative-infection penalty\n''under death minimization',
+    ax.set_title('Country-specific cumulative-infection penalty\n''from death-minimizing allocation',
                  fontsize=11, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,

@@ -21,13 +21,18 @@ def draw(anal_data, **kwargs):
     ####################################################
     scale_prop = 9
     grid_attrs = [[{'pos': (0, 0), 'size': (45, 27)}]]
-    margin_attr = {'top': 2, 'bottom': 10, 'left': 5, 'right': 5}
+    margin_attr = {'top': 5, 'bottom': 10, 'left': 5, 'right': 5}
     fig, axes = figure_setting.generate_grid(grid_attrs, margin_attr, scale_prop)
     ######################################################
     label_fontsize = 9
     tick_fontsize = 7
     ####################################################
     ax = axes[0][0]
+    title = {
+        'c': 'Country-specific necessity for minimizing\ncumulative infections',
+        'd': 'Country-specific necessity for minimizing deaths',
+    }[target]
+    ax.set_title(title, fontsize=11, fontweight='bold', pad=6)
     sorted_countries = ['Ireland', 'Japan', 'United Kingdom', 'France', 'Germany', 'United States', 'Spain', 'Austria', 'Israel', 'South Korea']
     targets = {'c': 'Cumulative Infections', 'd': 'Deaths'}
     def prepare_data(data_dict):

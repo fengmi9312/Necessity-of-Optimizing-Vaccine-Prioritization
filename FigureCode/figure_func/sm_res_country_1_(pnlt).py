@@ -49,15 +49,15 @@ def draw(anal_data, **kwargs):
     c_pnlt, c_lower, c_upper = [], [], []
     d_pnlt, d_lower, d_upper = [], [], []
     for country in COUNTRIES:
-        r0_stats = _mean_ci(anal_data['param_from_country']['r0'][country])
+        r0_stats = _mean_ci(anal_data['necs_from_country_140']['r0'][country])
         r0_mean.append(r0_stats[0])
         r0_lower.append(r0_stats[1])
         r0_upper.append(r0_stats[2])
 
         c_sheet = f"c_{acc_type}{'_dur' if dur else ''}"
         d_sheet = f"d_{acc_type}{'_dur' if dur else ''}"
-        c_stats = _mean_ci(anal_data['necs_from_country'][c_sheet][f'{country}_none_pnlt'] * 100)
-        d_stats = _mean_ci(anal_data['necs_from_country'][d_sheet][f'{country}_none_pnlt'] * 100)
+        c_stats = _mean_ci(anal_data['necs_from_country_140'][c_sheet][f'{country}_none_pnlt'] * 100)
+        d_stats = _mean_ci(anal_data['necs_from_country_140'][d_sheet][f'{country}_none_pnlt'] * 100)
         c_pnlt.append(c_stats[0])
         c_lower.append(c_stats[1])
         c_upper.append(c_stats[2])
@@ -172,7 +172,7 @@ def draw(anal_data, **kwargs):
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific cross-objective penalty',
+    ax.set_title('Country-specific cross-objective penalties',
                  fontsize=12, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,

@@ -11,6 +11,7 @@ import numpy as np
 import itertools
 from .analysis_dependencies import anal_func
 from copy import deepcopy
+from scipy.stats import pearsonr
 
 
 
@@ -60,7 +61,7 @@ def analyze(expr_data):
                 anal_data[sheet_name]['worst_ind'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], contact_arr * calc_params['populations']))
                 anal_data[sheet_name]['worst_dir'].append(anal_func.cosine_similarity(alloc_worst * calc_params['populations'], direct_effects_coef * coef_target[target]))
                 anal_data[sheet_name]['min_max_corr'].append(anal_func.cosine_similarity(alloc_optimal * calc_params['populations'], alloc_worst * calc_params['populations']))
-                if target == 'c': anal_data[sheet_name_x]['alloc_corr'].append(anal_func.cosine_similarity(alloc_data[f'min_c_{append_name}'].to_numpy() * calc_params['populations'], alloc_data[f'min_d_{append_name}'].to_numpy() * calc_params['populations']))
+                if target == 'c': anal_data[sheet_name_x]['alloc_corr'].append(pearsonr(alloc_data[f'min_c_{append_name}'].to_numpy() * calc_params['populations'], alloc_data[f'min_d_{append_name}'].to_numpy() * calc_params['populations'])[0])
     return anal_data
 
 

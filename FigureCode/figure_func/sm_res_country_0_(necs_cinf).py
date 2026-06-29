@@ -225,7 +225,7 @@ def draw(anal_data, **kwargs):
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific cumulative-infection necessity\n'r'on $R_0$ landscape',
+    ax.set_title('Country-specific necessity for minimizing\n'r'cumulative infections on $R_0$ landscape',
                  fontsize=12, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,

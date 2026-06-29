@@ -109,7 +109,6 @@ def draw(anal_data, **kwargs):
         elinewidth=0.6,
         capsize=1.6,
         capthick=0.6,
-        alpha=0.55,
         zorder=1.5,
     )
 
@@ -151,7 +150,7 @@ def draw(anal_data, **kwargs):
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific cumulative-infection penalty\n''under death minimization',
+    ax.set_title('Country-specific cumulative-infection penalty\n''from death-minimizing allocation',
                  fontsize=11, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,

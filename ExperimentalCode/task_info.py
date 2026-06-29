@@ -32,8 +32,9 @@ info = {'necs_from_param': {'delay': 40, 'vac_eff': 40, 'vac_avail': 40, 'c_perc
         'direct_effects_line_from_param': {'delay_8': 1, 'delay_10': 1, 'delay_13': 1, 'delay_26': 1, 'coef_beta_1_0': 1, 'coef_beta_1_13': 1, 'coef_beta_1_26': 1, 'coef_beta_1_39': 1},
         'direct_effects_from_contact': {'0': 1, '1': 1, '2': 1, '3': 1, '4': 1, '5': 1, '6': 1, '7': 1, '8': 1, '9': 1, '10': 1, '11': 1, '12': 1, '13': 1}, 
         'group_effect': {'delay': 1}, 
-        'necs_from_time_course': {'param': 1600}, 'necs_from_time_coursex': {'param': 1600},
-        'direct_effects_from_time_course': {'param': 40}}       
+        'necs_from_time_course': {'param': 1600}, 'necs_from_time_coursex': {'param': 1600}, 'necs_from_time_course_fixd': {'param': 1600}, 'necs_from_populations': {'param': 1600},
+        'necs_from_time_course_fixd_by_fatality_ext': {'param': 40},
+        'direct_effects_from_time_course': {'param': 40}, 'direct_effects_from_time_course_with_vac_avail': {'param': 40},'direct_effects_from_populations': {'param': 40}}       
 
 def check_info(func_name, task_param):
     if func_name not in info:

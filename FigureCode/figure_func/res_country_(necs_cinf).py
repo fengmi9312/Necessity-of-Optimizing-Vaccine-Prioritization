@@ -40,7 +40,7 @@ def draw(anal_data, **kwargs):
     target = kwargs.pop('target', 'c')
     acc_type = kwargs.pop('acc_type', 'dd')
     dur = kwargs.pop('dur', False)
-    param_idx = kwargs.pop('param_idx', 28)
+    param_idx = kwargs.pop('param_idx', 14)
     country_for_landscape = kwargs.pop('country', 'United States')
 
     scale_prop = 10
@@ -60,13 +60,13 @@ def draw(anal_data, **kwargs):
     sheet_name = f"{target}_{acc_type}{'_dur' if dur else ''}"
 
     for country in COUNTRIES:
-        r0_stats = _mean_ci(anal_data['necs_from_country']['r0'][country])
+        r0_stats = _mean_ci(anal_data['necs_from_country_70']['r0'][country])
         r0_mean.append(r0_stats[0])
         r0_lower.append(r0_stats[1])
         r0_upper.append(r0_stats[2])
 
         necs_key = f'{country}_none_necs'
-        necs_stats = _mean_ci(anal_data['necs_from_country'][sheet_name][necs_key] * 100)
+        necs_stats = _mean_ci(anal_data['necs_from_country_70'][sheet_name][necs_key] * 100)
         necs_mean.append(necs_stats[0])
         necs_lower.append(necs_stats[1])
         necs_upper.append(necs_stats[2])
@@ -108,10 +108,10 @@ def draw(anal_data, **kwargs):
     )
 
     main_label_offsets = {
-        'Ireland': (0.02, 1.0),
+        'Ireland': (-0.12, 1.0),
         'United States': (-0.15, -1.0),
-        'Spain': (-0.18, 0.7),
-        'Austria': (0.06, 0.4),
+        'Spain': (-0.18, -0.95),
+        'Austria': (0.06, -0.95),
         'Israel': (-0.27, -0.9),
         'South Korea': (0.04, 0.9),
     }
@@ -125,7 +125,7 @@ def draw(anal_data, **kwargs):
                 color='0.25', ha='left', va='center', zorder=4)
 
     cluster_countries = {'Japan', 'United Kingdom', 'France', 'Germany'}
-    axins = ax.inset_axes([0.60, 0.54, 0.30, 0.27])
+    axins = ax.inset_axes([0.65, 0.67, 0.30, 0.27])
     axins.errorbar(
         r0_mean,
         necs_mean,
@@ -144,7 +144,7 @@ def draw(anal_data, **kwargs):
         zorder=3,
     )
     zoom_x0, zoom_x1 = 1.55, 2.15
-    zoom_y0, zoom_y1 = 12.2, 17.25
+    zoom_y0, zoom_y1 = 21.5, 26
     axins.set_xlim(zoom_x0, zoom_x1)
     axins.set_ylim(zoom_y0, zoom_y1)
     axins.grid(True, color='0.9', linestyle=':', linewidth=0.45)
@@ -153,10 +153,10 @@ def draw(anal_data, **kwargs):
         spine.set_linewidth(0.6)
         spine.set_color('0.35')
     cluster_label_offsets = {
-        'Japan': (-0.12, -0.75),
+        'Japan': (-0.08, -0.55),
         'United Kingdom': (-0.06, 0.95),
-        'France': (0.05, 0.45),
-        'Germany': (0.04, -0.65),
+        'France': (0.01, -0.55),
+        'Germany': (0.04, 0.65),
     }
     for country, x_val, y_val in zip(COUNTRIES, r0_mean, necs_mean):
         if country not in cluster_countries:
@@ -217,15 +217,15 @@ def draw(anal_data, **kwargs):
 
     ax.set_xscale('log')
     ax.set_xlim(1, 6.3)
-    ax.set_ylim(0, 25)
-    ax.set_yticks(np.arange(0, 26, 5))
+    ax.set_ylim(0, 30)
+    ax.set_yticks(np.arange(0, 31, 10))
     ax.xaxis.set_major_locator(LogLocator(base=10, subs=(1, 2, 3, 4, 5, 6)))
     ax.xaxis.set_major_formatter(FuncFormatter(_format_log_tick))
     ax.xaxis.set_minor_formatter(NullFormatter())
     ax.grid(True, color='0.88', linestyle=':', linewidth=0.55)
     ax.set_axisbelow(True)
 
-    ax.set_title('Country-specific cumulative-infection necessity\n'r'on $R_0$ landscape',
+    ax.set_title('Country-specific necessity for minimizing\n'r'cumulative infections on $R_0$ landscape',
                  fontsize=12, fontweight='bold', pad=6)
     figure_setting.set_xylabel(
         ax,
@@ -237,6 +237,6 @@ def draw(anal_data, **kwargs):
     )
     figure_setting.set_spine_linewidth(ax, spine_linewidth)
     figure_setting.set_tick_fontsize(ax, tick_fontsize)
-    ax.legend(frameon=False, fontsize=8, loc='upper right', handlelength=2.2)
+    ax.legend(frameon=False, fontsize=8, loc='upper left', handlelength=2.2)
 
     return fig, axes

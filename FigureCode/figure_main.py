@@ -32,14 +32,21 @@ anal_list = ['alloc_from_age_with_example', 'alloc_from_r0_factor', 'bnf_from_ex
 # anal_data = analysis.get_anal_data(['necs_from_r0_factor', 'corr_from_r0_factor'])
 # anal_data.update(analysis.get_anal_data(['alloc_from_age_with_example', 'fraction_from_time_with_example']))
 # anal_data.update(analysis.get_anal_data(['necs_line_from_r0', 'corr_line_from_r0']))
-anal_data = {}
+anal_data = {}xxx
 
 anal_list = ['corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_contact', 'corr_from_r0_factor', 'necs_line_from_r0', 'corr_line_from_r0', 'necs_from_r0_factor', 'corr_from_r0_factor', 'necs_from_r0_factor_by_eta', 'corr_from_r0_factor_by_eta']
 
 anal_list = ['corr_from_r0_factor', 'necs_from_r0_factor', 'corr_line_from_r0', 'necs_line_from_r0', 'prdt_from_corr', 'bnf_from_example', 'corr_from_r0_fatality_by_contact', 'necs_from_r0_fatality_by_contact','necs_from_r0_factor_by_eta', 'corr_from_r0_factor_by_eta', 'necs_from_country', 'param_from_country', 'fitted_fraction_from_time']
 
-anal_data.update(analysis.get_anal_data(['necs_from_r0_time_course']))
+# anal_data.update(analysis.get_anal_data(['necs_from_r0_time_course', 'corr_from_r0_time_course', 'necs_from_r0_factor', 'corr_from_r0_factor', 
+#                                          'necs_from_r0_time_course_by_fatality', 'corr_from_r0_time_course_by_fatality', 'necs_from_r0_time_course_by_fatality_ext', 'corr_from_r0_time_course_by_fatality_ext']))
+
+# anal_data.update(analysis.get_anal_data(['necs_from_r0_time_course', 'corr_from_r0_time_course', 'necs_from_r0_factor', 'corr_from_r0_factor']))
+
+
 # anal_data.update(analysis.get_anal_data(['alloc_from_age_with_example', 'fraction_from_time_with_example']))
+
+anal_data.update(analysis.get_anal_data(['necs_from_r0_factor', 'corr_from_r0_factor', ]))
 
 fig_dict = {'illustration': ['necs_illustration'],
             'necs_cinf': ['necs_cinf', 'corr_cinf', 'necs_slice', 'example', 'rnecs_slice', 'rnecs_cinf'],
@@ -109,8 +116,21 @@ selected_fig_dict = {'sm_contacts_params': ['at', 'de', 'es', 'fr', 'ie', 'il', 
                      'sm_fatality_by_contact': ['fatality'],
                      'sm_populations_params': ['at', 'de', 'es', 'fr', 'ie', 'il', 'jp', 'kr', 'uk'],
                      'sm_us_params': ['contacts', 'fatality_by_gamma', 'populations']}
-selected_fig_dict = {'sm_necs_time_course': ['necs_cinf', 'necs_death']}
-save_fig = False
+selected_fig_dict = {'sm_necs_cinf_time_course': ['necs', 'necs_x'], 'sm_necs_death_time_course': ['necs', 'necs_x']}
+selected_fig_dict = {'res_country': ['necs_death'], 'sm_res_country_0': ['necs_death'], 'sm_res_country_1': ['necs_death'],}
+selected_fig_dict = {'sm_necs_cinf_time_course': ['corr_fixd'], 'sm_necs_death_time_course': ['corr_fixd']}
+
+
+selected_fig_dict = {'sm_necs_time_course': ['pnlt', 'alloc_corr', 'necs_fixd_cinf', 'corr_fixd_cinf', 'necs_fixd_death', 'corr_fixd_death'] }
+selected_fig_dict = {'sm_necs_populations': ['necs_cinf', 'necs_death', 'necs_death_adj', 'corr_cinf', 'corr_death', 'pop_example', 'pw_ifr'] }
+
+selected_fig_dict = {'sm_res_country_1': ['necs_cinf', 'necs_death_adj', 'cinf_pnlt', 'death_pnlt'], }
+selected_fig_dict = {'sm_necs_contacts': ['necs_cinf', 'corr_cinf', 'necs_death', 'corr_death'], }
+selected_fig_dict = {'sm_pnlt_from_populations_and_contacts': ["pnlt_contact_1", "pnlt_contact_13", "alloc_corr_contact_1", "alloc_corr_contact_13", "pnlt_populations", "alloc_corr_populations"]}
+
+selected_fig_dict = {'sm_necs_other_cinf': ['necs_vac_eff', 'corr_vac_eff'],
+                     'sm_necs_other_death': ['necs_vac_eff', 'corr_vac_eff'],}
+save_fig = True
 import matplotlib.pyplot as plt
 importlib.reload(ff)
 for fig_name, sub_name_list in selected_fig_dict.items():
@@ -121,5 +141,5 @@ for fig_name, sub_name_list in selected_fig_dict.items():
             plt.close(fig)
             
             
-plt.figure()
-plt.plot(anal_data['necs_from_r0_time_course']['necs_from_time_course_(param)-us_c_dd_necs'].to_numpy()[:, 20])
+# plt.figure()
+# plt.plot(anal_data['necs_from_r0_time_course']['necs_from_time_course_fixd_(param)-us_c_dd_necs'].to_numpy()[:, 20])
